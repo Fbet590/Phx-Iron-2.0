@@ -190,7 +190,7 @@ export function QuoteForm() {
         </div>
 
         <Card className="max-w-xl mx-auto p-5 md:p-6 bg-foreground border-foreground/80">
-          <p className="text-background/70 text-sm text-center mb-4">
+          <p className="text-background text-sm text-center mb-6 font-medium">
             Fill out the form below. Takes 22 Seconds. We&apos;ll handle the Rest.
           </p>
           {/* Step 1: Name */}
