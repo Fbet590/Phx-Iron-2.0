@@ -137,13 +137,12 @@ export function Hero() {
           </div>
 
           <h1 className="font-[family-name:var(--font-display)] text-[45px] md:text-5xl lg:text-6xl font-black text-card mb-6 leading-tight text-balance">
-            Bring Your Dream Gate or Door to Life with
-            <span className="block text-primary">Expert Design & Craftsmanship</span>
+            CUSTOM GATES. NO RUNAROUND.
+            <span className="block text-primary">PRICED UPFRONT.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-card/90 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Custom iron entry doors and gates crafted to elevate your home&apos;s 
-            style, security, and curb appeal.
+            Designed, Built and Installed
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

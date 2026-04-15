@@ -5,43 +5,20 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import { ChevronLeft, ChevronRight, DoorOpen, Fence, Grid3X3, Grip, Check } from "lucide-react"
+import { ChevronLeft, ChevronRight, Check } from "lucide-react"
 import { trackFBEvent } from "@/components/facebook-pixel"
 
-type FormStep = 1 | 2 | 3 | 4 | 5
+type FormStep = 1 | 2 | 3
 
 interface FormData {
-  serviceType: string
-  budget: string
   name: string
   email: string
   phone: string
 }
 
-const serviceTypes = [
-  { id: "entry-door", label: "Entry Door", icon: DoorOpen },
-  { id: "side-gate", label: "Side Gate / RV Gate", icon: Fence },
-  { id: "fencing", label: "Fencing / Pool Fence", icon: Grid3X3 },
-  { id: "railing", label: "Railing", icon: Grip },
-]
-
-const defaultBudgets = [
-  { id: "3500-5000", label: "$3,500 – $5,000" },
-  { id: "5000-9000", label: "$5,000 – $9,000" },
-  { id: "10000-plus", label: "$10,000+" },
-]
-
-const sideGateBudgets = [
-  { id: "1200-3000", label: "$1,200 – $3,000" },
-  { id: "3500-5000", label: "$3,500 – $5,000" },
-  { id: "5000-plus", label: "$5,000+" },
-]
-
 export function QuoteForm() {
   const [step, setStep] = useState<FormStep>(1)
   const [formData, setFormData] = useState<FormData>({
-    serviceType: "",
-    budget: "",
     name: "",
     email: "",
     phone: "",
@@ -50,14 +27,6 @@ export function QuoteForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({})
-
-  // Get budget options based on selected service type
-  const getBudgets = () => {
-    if (formData.serviceType === "side-gate") {
-      return sideGateBudgets
-    }
-    return defaultBudgets
-  }
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -71,7 +40,7 @@ export function QuoteForm() {
   }
 
   const handleNext = () => {
-    if (step < 5) setStep((step + 1) as FormStep)
+    if (step < 3) setStep((step + 1) as FormStep)
   }
 
   const handlePrev = () => {
@@ -91,8 +60,6 @@ export function QuoteForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          serviceType: serviceTypes.find(s => s.id === formData.serviceType)?.label || formData.serviceType,
-          budget: getBudgets().find(b => b.id === formData.budget)?.label || formData.budget,
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
@@ -106,10 +73,7 @@ export function QuoteForm() {
 
       // Track Facebook Lead conversion event
       trackFBEvent("Lead", {
-        content_name: serviceTypes.find(s => s.id === formData.serviceType)?.label,
         content_category: "Quote Request",
-        value: formData.budget,
-        currency: "USD",
       })
 
       setSubmitted(true)
@@ -123,18 +87,14 @@ export function QuoteForm() {
   const canProceed = () => {
     switch (step) {
       case 1:
-        return formData.serviceType !== ""
-      case 2:
-        return formData.budget !== ""
-      case 3:
         return formData.name !== ""
-      case 4:
+      case 2:
         if (formData.email === "") return false
         if (!validateEmail(formData.email)) {
           return false
         }
         return true
-      case 5:
+      case 3:
         if (formData.phone === "") return false
         if (!validatePhone(formData.phone)) {
           return false
@@ -204,7 +164,7 @@ export function QuoteForm() {
         {/* Progress Bar */}
         <div className="max-w-xl mx-auto mb-8">
           <div className="flex items-center justify-between mb-2">
-            {[1, 2, 3, 4, 5].map((s) => (
+            {[1, 2, 3].map((s) => (
               <div
                 key={s}
                 className={cn(
@@ -223,65 +183,14 @@ export function QuoteForm() {
           <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div
               className="h-full bg-primary transition-all duration-300"
-              style={{ width: `${((step - 1) / 4) * 100}%` }}
+              style={{ width: `${((step - 1) / 2) * 100}%` }}
             />
           </div>
         </div>
 
         <Card className="max-w-xl mx-auto p-5 md:p-6 bg-foreground border-foreground/80">
-          {/* Step 1: Service Type */}
+          {/* Step 1: Name */}
           {step === 1 && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-background text-center mb-4">
-                What type of project would you like done?
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {serviceTypes.map((service) => (
-                  <button
-                    key={service.id}
-                    onClick={() => setFormData({ ...formData, serviceType: service.id, budget: "" })}
-                    className={cn(
-                      "p-4 rounded-lg border-2 transition-all text-left flex items-center gap-3",
-                      formData.serviceType === service.id
-                        ? "border-primary bg-primary/20"
-                        : "border-background/30 hover:border-primary/50"
-                    )}
-                  >
-                    <service.icon className="w-7 h-7 text-primary flex-shrink-0" />
-                    <span className="font-medium text-background text-base">{service.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Step 2: Budget */}
-          {step === 2 && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-background text-center mb-4">
-                What&apos;s your approximate budget?
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {getBudgets().map((budget) => (
-                  <button
-                    key={budget.id}
-                    onClick={() => setFormData({ ...formData, budget: budget.id })}
-                    className={cn(
-                      "p-4 rounded-lg border-2 transition-all text-center font-medium text-base",
-                      formData.budget === budget.id
-                        ? "border-primary bg-primary/20 text-background"
-                        : "border-background/30 text-background/80 hover:border-primary/50"
-                    )}
-                  >
-                    {budget.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Step 3: Name */}
-          {step === 3 && (
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-background text-center mb-4">
                 What&apos;s your name?
@@ -296,8 +205,8 @@ export function QuoteForm() {
             </div>
           )}
 
-          {/* Step 4: Email */}
-          {step === 4 && (
+          {/* Step 2: Email */}
+          {step === 2 && (
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-background text-center mb-4">
                 What&apos;s your email address?
@@ -320,8 +229,8 @@ export function QuoteForm() {
             </div>
           )}
 
-          {/* Step 5: Phone */}
-          {step === 5 && (
+          {/* Step 3: Phone */}
+          {step === 3 && (
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-background text-center mb-4">
                 Best phone number to reach you?
@@ -358,7 +267,7 @@ export function QuoteForm() {
             ) : (
               <div />
             )}
-            {step < 5 ? (
+            {step < 3 ? (
               <Button
                 onClick={handleNext}
                 disabled={!canProceed()}
