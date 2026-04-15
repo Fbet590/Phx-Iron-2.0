@@ -154,11 +154,11 @@ export function QuoteForm() {
             Get Started Today
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-[22px] md:text-4xl font-bold text-foreground mb-4">
-            <span className="block">Most Side Gates - $1,000.</span>
-            <span className="block">Most RV Gates - $2,000.</span>
+            <span className="block">Side Gates · $1,000</span>
+            <span className="block">RV Gates · $2,000</span>
           </h2>
           <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
-            Price will be adjusted if you&apos;re looking for a bigger or more complex build.
+            Need something bigger or more complex? No problem
           </p>
         </div>
 
@@ -190,6 +190,9 @@ export function QuoteForm() {
         </div>
 
         <Card className="max-w-xl mx-auto p-5 md:p-6 bg-foreground border-foreground/80">
+          <p className="text-background/70 text-sm text-center mb-4">
+            Fill out the form below. Takes 22 Seconds. We&apos;ll handle the Rest.
+          </p>
           {/* Step 1: Name */}
           {step === 1 && (
             <div className="space-y-4">
