@@ -160,6 +160,11 @@ export function QuoteForm() {
           <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
             Need something bigger or more complex? No problem
           </p>
+          <div className="w-16 h-px bg-muted-foreground/30 mx-auto my-4" />
+          <p className="text-foreground text-base md:text-lg font-medium max-w-lg mx-auto">
+            Fill out the form and we&apos;ll do the rest!<br />
+            No pressure, no commitment.
+          </p>
         </div>
 
         {/* Progress Bar */}
@@ -190,9 +195,6 @@ export function QuoteForm() {
         </div>
 
         <Card className="max-w-xl mx-auto p-5 md:p-6 bg-foreground border-foreground/80">
-          <p className="text-background text-sm text-center mb-6 font-medium">
-            Fill out the form below. Takes 22 Seconds. We&apos;ll handle the Rest.
-          </p>
           {/* Step 1: Name */}
           {step === 1 && (
             <div className="space-y-4">
