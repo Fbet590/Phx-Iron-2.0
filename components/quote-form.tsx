@@ -52,7 +52,7 @@ export function QuoteForm() {
     setSubmitError(null)
 
     try {
-      const webhookUrl = "https://services.leadconnectorhq.com/hooks/GRbuCAmd9IkPektkc5IA/webhook-trigger/ae743574-7596-4d47-acf8-82d5c7cade70"
+      const webhookUrl = "https://services.leadconnectorhq.com/hooks/GRbuCAmd9IkPektkc5IA/webhook-trigger/VLAysU6JCC3ujgrYcN0W"
 
       const response = await fetch(webhookUrl, {
         method: "POST",
