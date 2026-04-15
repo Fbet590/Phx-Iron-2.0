@@ -153,11 +153,17 @@ export function QuoteForm() {
           <p className="text-primary font-semibold uppercase tracking-wider mb-2">
             Get Started Today
           </p>
-          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            Tell Us About Your Project
+          <h2 className="font-[family-name:var(--font-display)] text-[22px] md:text-4xl font-bold text-foreground mb-4">
+            <span className="block">Side Gates · $1,000</span>
+            <span className="block">RV Gates · $2,000</span>
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Answer a few quick questions and we&apos;ll provide a custom quote
+          <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto">
+            Need something bigger or more complex? No problem
+          </p>
+          <div className="w-16 h-px bg-muted-foreground/30 mx-auto my-4" />
+          <p className="text-foreground text-base md:text-lg font-medium max-w-lg mx-auto">
+            Fill out the form and we&apos;ll do the rest!<br />
+            No pressure, no commitment.
           </p>
         </div>
 
