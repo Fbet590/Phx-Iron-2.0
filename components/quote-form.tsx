@@ -154,10 +154,10 @@ export function QuoteForm() {
             Get Started Today
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            Tell Us About Your Project
+            Most Side Gates - $1,000. Most RV Gates - $2,000.
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Answer a few quick questions and we&apos;ll provide a custom quote
+            Price will be adjusted if you&apos;re looking for a bigger or more complex build.
           </p>
         </div>
 
