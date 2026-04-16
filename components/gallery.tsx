@@ -8,6 +8,25 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 
 const galleryImages = [
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_ccf4i5ccf4i5ccf4.png-l6PrCqltE3Wo9J7ECF9lV7YkxINGot.jpeg", alt: "Arched side gate with wood grain panels and diamond accents in bronze finish" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_s338ejs338ejs338.png-5FMFi8j7E4UB4gwYst8Uu8iAfxO6bD.jpeg", alt: "Modern black horizontal slat RV gate with clean lines" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_n6dbx2n6dbx2n6db.png-50xIBb7j3Z3SoHkcfyxQ0w7ta0fRPw.jpeg", alt: "Arched side gate with natural cedar wood and decorative scrollwork" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_k0fzsek0fzsek0fz.png-UAA8rvGq0xeVEQlFS8F3fem3NrDS88.jpeg", alt: "Double RV gate with wood grain panels and diamond accents in black frame" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_wxnqt6wxnqt6wxnq.png-2ZxGjl2QwmmYSHwOKpOga6oREV5W21.jpeg", alt: "Elegant arched side gate with rich wood grain finish and bronze hardware" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_cy0ve9cy0ve9cy0v.png-q6TJmQ1VOBNNUU1OPp4w9Xoz40OFcQ.jpeg", alt: "Double RV gate with mahogany wood panels and diamond accents" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_kdgrfvkdgrfvkdgr.png-lfhNEqutmBoFWN4vft5zYb3uZjFGvt.jpeg", alt: "Large ornate double RV gate with scrollwork and dark walnut wood grain" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_vvlgosvvlgosvvlg.png-40pfkloEfwOjkWY2Kb9qp15th2kVfo.jpeg", alt: "Modern black horizontal bar railing with scenic view" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_oas6l2oas6l2oas6.png-xfMwayOq1Xu0eN9nXu0CCmNmkjjheH.jpeg", alt: "Courtyard entry gate with bronze scrollwork between stone pillars" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_9rgfhn9rgfhn9rgf.png-MEk6gAXJq2FvKcVYi3dscRtROndRid.jpeg", alt: "Arched side gate with vertical bars and diamond accents in matte black" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_1mhhoa1mhhoa1mhh.png-ZFbv4Gssdx1icat7vHkIuipeaJ2iV2.jpeg", alt: "Double RV gate with natural wood panels and black metal frame" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_stosdvstosdvstos.png-1OrwBaQhi2obK876zFbd6yfokgjYfE.jpeg", alt: "Modern geometric pattern double gate in matte black finish" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_dghckrdghckrdghc.png-kmErIhS5NW7RpZ8auBQF5VdUrTwZw9.jpeg", alt: "Double RV gate with dark espresso wood panels and black frame" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_cfi95wcfi95wcfi9.png-M3H9C89meiIDbYqpjmSeODXLCJLVen.jpeg", alt: "Elegant arched side gate with bronze finish and decorative scrollwork" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_fs3sssfs3sssfs3s.png-IeldeSmuR8aVrtNNH88ozgyPrGll80.jpeg", alt: "Black security fence with spear top finials" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_8azfve8azfve8azf.png-URvEn2fypjLlwywS6gmi6LCbrwqAnj.jpeg", alt: "Double gate with matching side gate featuring wood grain panels on paver driveway" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_5yt7ba5yt7ba5yt7.png-xMvkNqu3enMqw1HAAB5LjdR5YAoZfn.jpeg", alt: "Ornate double RV gate with copper scrollwork design" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_ba9eggba9eggba9e.png-3hhJQ9cUlRd2u1VGhCwVxzFd51WIds.jpeg", alt: "Modern privacy fence panels in charcoal finish with scenic backdrop" },
+  { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_sfmgrdsfmgrdsfmg.png-DLts148x91vm0RJtVkNHfk0HOoooDE.jpeg", alt: "Large arched double RV gate with orange wood panels and black frame with diamond accents" },
   { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Mar%209%2C%202026%20at%2001_52_37%20PM-aWRLuabnOBIIhD4bbfMxL3d6fsNmZq.png", alt: "Modern black horizontal slat driveway gate" },
   { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Mar%207%2C%202026%20at%2004_17_07%20PM-aZeg9U4erTLNWw0F6eobOcfCSO77Be.png", alt: "Black iron French doors with sunset reflection" },
   { src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Mar%209%2C%202026%20at%2001_54_37%20PM-Kv2FJDhHkCBOxQWSEry42h748XnzTj.png", alt: "Arched iron and wood pedestrian gate" },
@@ -114,13 +133,19 @@ export function Gallery() {
             </button>
 
             {selectedIndex !== null && (
-              <div className="relative aspect-[4/3] md:aspect-video">
-                <Image
-                  src={galleryImages[selectedIndex].src}
-                  alt={galleryImages[selectedIndex].alt}
-                  fill
-                  className="object-contain"
-                />
+              <div className="flex flex-col">
+                <div className="relative aspect-[4/3] md:aspect-video">
+                  <Image
+                    src={galleryImages[selectedIndex].src}
+                    alt={galleryImages[selectedIndex].alt}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <p className="text-background text-sm md:text-base">{galleryImages[selectedIndex].alt}</p>
+                  <p className="text-background/60 text-xs mt-1">{selectedIndex + 1} / {galleryImages.length}</p>
+                </div>
               </div>
             )}
           </DialogContent>

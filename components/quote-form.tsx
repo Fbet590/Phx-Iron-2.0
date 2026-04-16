@@ -153,7 +153,7 @@ export function QuoteForm() {
           <p className="text-primary font-semibold uppercase tracking-wider mb-2">
             Get Started Today
           </p>
-          <h2 className="font-[family-name:var(--font-display)] text-[22px] md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-[family-name:var(--font-display)] text-[27px] md:text-[40px] font-bold text-foreground mb-4">
             <span className="block">Side Gates · $1,000</span>
             <span className="block">RV Gates · $2,000</span>
           </h2>
