@@ -108,11 +108,9 @@ export function QuoteForm() {
         }
         return true
       case 3:
-        if (formData.phone === "") return false
-        if (!validatePhone(formData.phone)) {
-          return false
-        }
-        return true
+        // Allow submission if phone has at least 7 digits (covers various formats)
+        const digits = formData.phone.replace(/\D/g, "")
+        return digits.length >= 7
       default:
         return true
     }
@@ -130,11 +128,8 @@ export function QuoteForm() {
 
   const handlePhoneChange = (value: string) => {
     setFormData({ ...formData, phone: value })
-    // Only show error if they've entered some digits but not enough
-    const digits = value.replace(/\D/g, "")
-    if (digits.length > 0 && digits.length < 10) {
-      setErrors({ ...errors, phone: "Please enter a valid 10-digit phone number" })
-    } else {
+    // Clear error when user is typing
+    if (errors.phone) {
       setErrors({ ...errors, phone: undefined })
     }
   }
