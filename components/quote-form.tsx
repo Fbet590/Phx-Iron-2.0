@@ -51,50 +51,50 @@ export function QuoteForm() {
     setIsSubmitting(true)
     setSubmitError(null)
 
-    try {
-      const leadConnectorUrl = "https://services.leadconnectorhq.com/hooks/GRbuCAmd9IkPektkc5IA/webhook-trigger/VLAysU6JCC3ujgrYcN0W"
-      const zapierUrl = "https://hooks.zapier.com/hooks/catch/24750736/4y2c0hj/"
+    const leadConnectorUrl = "https://services.leadconnectorhq.com/hooks/GRbuCAmd9IkPektkc5IA/webhook-trigger/VLAysU6JCC3ujgrYcN0W"
+    const zapierUrl = "https://hooks.zapier.com/hooks/catch/24750736/4y2c0hj/"
 
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        submittedAt: new Date().toISOString(),
-      }
-
-      // Send to both webhooks in parallel
-      const [leadConnectorResponse] = await Promise.all([
-        fetch(leadConnectorUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }),
-        fetch(zapierUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }),
-      ])
-
-      if (!leadConnectorResponse.ok) {
-        throw new Error("Failed to submit form")
-      }
-
-      // Track Facebook Lead conversion event
-      trackFBEvent("Lead", {
-        content_category: "Quote Request",
-      })
-
-      setSubmitted(true)
-    } catch {
-      setSubmitError("Something went wrong. Please try again.")
-    } finally {
-      setIsSubmitting(false)
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      submittedAt: new Date().toISOString(),
     }
+
+    try {
+      // Send to LeadConnector
+      await fetch(leadConnectorUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+    } catch (err) {
+      console.log("[v0] LeadConnector webhook error:", err)
+    }
+
+    try {
+      // Send to Zapier
+      await fetch(zapierUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+    } catch (err) {
+      console.log("[v0] Zapier webhook error:", err)
+    }
+
+    // Track Facebook Lead conversion event
+    trackFBEvent("Lead", {
+      content_category: "Quote Request",
+    })
+
+    setSubmitted(true)
+    setIsSubmitting(false)
   }
 
   const canProceed = () => {
