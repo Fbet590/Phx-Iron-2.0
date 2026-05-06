@@ -52,22 +52,35 @@ export function QuoteForm() {
     setSubmitError(null)
 
     try {
-      const webhookUrl = "https://services.leadconnectorhq.com/hooks/GRbuCAmd9IkPektkc5IA/webhook-trigger/VLAysU6JCC3ujgrYcN0W"
+      const leadConnectorUrl = "https://services.leadconnectorhq.com/hooks/GRbuCAmd9IkPektkc5IA/webhook-trigger/VLAysU6JCC3ujgrYcN0W"
+      const zapierUrl = "https://hooks.zapier.com/hooks/catch/24750736/4y2c0hj/"
 
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          submittedAt: new Date().toISOString(),
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        submittedAt: new Date().toISOString(),
+      }
+
+      // Send to both webhooks in parallel
+      const [leadConnectorResponse] = await Promise.all([
+        fetch(leadConnectorUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         }),
-      })
+        fetch(zapierUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }),
+      ])
 
-      if (!response.ok) {
+      if (!leadConnectorResponse.ok) {
         throw new Error("Failed to submit form")
       }
 
