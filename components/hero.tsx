@@ -26,7 +26,7 @@ export function Hero() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <span className="font-[family-name:var(--font-display)] text-xl md:text-2xl font-bold tracking-tight text-foreground">
-                PHOENIX <span className="text-primary">IRON</span> DESIGN
+                PHOENIX <span className="text-primary">IRON</span> DESIGN & SUPPLIES
               </span>
             </div>
 
